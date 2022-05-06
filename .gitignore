@@ -119,3 +119,5 @@ Octotree
 
 backend/public/profile/*
 backend/public/resume/*
+# Local Netlify folder
+.netlify

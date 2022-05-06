@@ -5,6 +5,8 @@ const passportConfig = require("./lib/passportConfig");
 const cors = require("cors");
 const fs = require("fs");
 
+
+const router = require('./router');
 // MongoDB
 mongoose
   .connect("mongodb+srv://john:john123@cluster0.bg8rf.mongodb.net/jobportal?retryWrites=true&w=majority", {
@@ -28,13 +30,14 @@ if (!fs.existsSync("./public/profile")) {
 }
 
 const app = express();
-const port = 4444;
+const PORT =process.env.PORT || 4444;
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 // Setting up middlewares
 app.use(cors());
+app.use(router);
 app.use(express.json());
 app.use(passportConfig.initialize());
 
@@ -44,6 +47,6 @@ app.use("/api", require("./routes/apiRoutes"));
 app.use("/upload", require("./routes/uploadRoutes"));
 app.use("/host", require("./routes/downloadRoutes"));
 
-app.listen(port, () => {
-  console.log(`Server started on port ${port}!`);
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}!`);
 });

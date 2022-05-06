@@ -1,4 +1,4 @@
-export const server = "https://job-searchingapp.herokuapp.com/";
+export const server = "https://job-searchingapp.herokuapp.com";
 
 const apiList = {
   login: `${server}/auth/login`,
